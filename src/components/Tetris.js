@@ -53,7 +53,7 @@ const Tetris = ({ callback }) => {
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false })
     } else {
-      //Game oer
+      //Game over
       if (player.pos.y < 1) {
         console.log('GAME OVER')
         setGameOver(true)
@@ -65,8 +65,10 @@ const Tetris = ({ callback }) => {
 
   const keyUp = ({ keyCode }) => {
     if (!gameOver) {
+      console.log('KeyUp -> ',{ keyCode })
       if (keyCode === 40) {
-        console.log('drop interval on')
+        let val = 1000 / (level + 1) + 200
+        console.log('drop interval on',{val})
         setDropTime(1000 / (level + 1) + 200)
       }
     }
@@ -79,7 +81,7 @@ const Tetris = ({ callback }) => {
   }
 
   const move = ({ keyCode }) => {
-    console.log({ keyCode })
+    console.log('Move-> ',{ keyCode })
     if (!gameOver) {
       if (keyCode === 37) {
         movePlayer(-1)
